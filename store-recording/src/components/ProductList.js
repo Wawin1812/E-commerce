@@ -8,9 +8,9 @@ export default class ProductList extends Component {
     return (
       <React.Fragment>
         <div className="py-5">
-          <div class="container">
+          <div className="container">
             <Title name= "The " title=" SmartPhone World" />
-            <div class="row" />
+            <div className="row">
             <ProductConsumer>
               {value => {
                 return value.product.map(product => {
@@ -18,6 +18,7 @@ export default class ProductList extends Component {
                 });
               }}
             </ProductConsumer>
+          </div>
           </div>
         </div>
       </React.Fragment>

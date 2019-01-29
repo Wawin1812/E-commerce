@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import { storeProducts, detailProduct } from "../data";
-import Details from "./Details";
-import Product from "./Product";
+//import Details from "./Details";
+//import Product from "./Product";
 
 const ProductContext = React.createContext();
 
@@ -10,9 +10,12 @@ class ProductProvider extends Component {
   state = {
     product: [],
     details: detailProduct,
-    cart: [],
+    cart: [] ,
     modelOpen: false,
-    modelProduct: detailProduct
+    modelProduct: detailProduct,
+    cartSubTotal: 0,
+    cartTax: 0,
+    cartTotal: 0
   };
   componentDidMount() {
     this.setProducts();
@@ -38,6 +41,7 @@ class ProductProvider extends Component {
       return { details: product };
     });
   };
+
   addToCart = id => {
     let tempProduct = [...this.state.product];
     const index = tempProduct.indexOf(this.getItem(id));
@@ -66,6 +70,27 @@ class ProductProvider extends Component {
       return { modelOpen: false };
     });
   };
+
+  increment = id => {
+    console.log("this is a increment");
+  };
+
+  decrement = id => {
+    console.log("this is a decrement");
+  };
+
+  removeItem = id => {
+    console.log("item removed");
+  };
+
+  clearCart = () => {
+    console.log("cart is cleared");
+  };
+
+  addTotal =()=>{
+    let SubTotal=0
+    this.state.cart.map(item=>(SubTotal+=item.total))
+  }
   render() {
     return (
       <ProductContext.Provider
@@ -74,7 +99,11 @@ class ProductProvider extends Component {
           handleDetail: this.handleDetail,
           addToCart: this.addToCart,
           openModel: this.openModel,
-          closeModel: this.closeModel
+          closeModel: this.closeModel,
+          increment: this.increment,
+          decrement: this.decrement,
+          removeItem: this.removeItem,
+          clearCart: this.clearCart
         }}
       >
         {this.props.children}

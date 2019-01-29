@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "../logo.svg";
-import Product from "./Product";
+//import Product from "./Product";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 
